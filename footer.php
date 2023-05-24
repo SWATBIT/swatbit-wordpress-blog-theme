@@ -19,11 +19,15 @@
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero amet, repellendus eius blanditiis in iusto eligendi iure.</p>
 
           <div class="social-media-button">
-            <a href="#"><span class="mai-logo-facebook-f"></span></a>
-            <a href="#"><span class="mai-logo-twitter"></span></a>
-            <a href="#"><span class="mai-logo-google-plus-g"></span></a>
-            <a href="#"><span class="mai-logo-instagram"></span></a>
-            <a href="#"><span class="mai-logo-youtube"></span></a>
+          <?php if ( have_rows( 'footer_social_media', 'option' ) ) : ?>
+            <?php while ( have_rows( 'footer_social_media', 'option' ) ) : the_row(); ?>
+            <a href="<?php the_sub_field( 'footer_social_url' );  ?>"><?php the_sub_field( 'footer_icon' ); ?></span></a>
+            <?php endwhile; ?>
+          <?php else : ?>
+            <?php // no rows found
+              echo 'Please <a hred="'. home_url().'/wp-admin/admin.php?page=acf-options-theme-settings">add</a> social media';
+            ?>
+          <?php endif; ?>            
           </div>
         </div>
         <div class="col-lg-3 py-3">
@@ -52,7 +56,7 @@
         </div>
       </div>
 
-      <p class="text-center" id="copyright">Copyright &copy; 2020. This template design and develop by <a href="https://macodeid.com/" target="_blank">MACode ID</a></p>
+      <p class="text-center" id="copyright">Copyright &copy; 2020.</a></p>
     </div>
 
 	</footer><!-- #colophon -->
